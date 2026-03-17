@@ -62,12 +62,6 @@ type PointCard = {
   copy: string
 }
 
-type Testimonial = {
-  quote: string
-  name: string
-  role: string
-}
-
 const navigation: NavigationItem[] = [
   { key: 'dashboard', label: 'Panel', eyebrow: 'Resumen' },
   { key: 'patients', label: 'Pacientes', eyebrow: 'Base clinica' },
@@ -90,36 +84,6 @@ const highlights: Highlight[] = [
   { value: 'React + TS', label: 'Stack mas comercial' },
   { value: '7 modulos', label: 'Demo visible' },
   { value: '1 link', label: 'Lista para mostrar' },
-]
-
-const problemCards: PointCard[] = [
-  {
-    title: 'Muchos demos no inspiran confianza',
-    copy: 'Se ven viejos, cargados o demasiado tecnicos para venderlos rapido.',
-  },
-  {
-    title: 'El comprador no quiere leer arquitectura',
-    copy: 'Quiere entender en dos minutos que recibe, para quien sirve y por que vale la pena.',
-  },
-  {
-    title: 'En salud no alcanza con verse lindo',
-    copy: 'Necesita verse ordenado, serio, claro y con sensacion de producto real.',
-  },
-]
-
-const solutionCards: PointCard[] = [
-  {
-    title: 'Landing de autoridad',
-    copy: 'Hero claro, prueba social, entregables concretos y CTA fuerte desde arriba.',
-  },
-  {
-    title: 'Panel interno creible',
-    copy: 'Agenda, pacientes, estudios y reportes con jerarquia y aire de software actual.',
-  },
-  {
-    title: 'Posicionamiento correcto',
-    copy: 'No se vende como ERP hospitalario; se vende como base moderna adaptable.',
-  },
 ]
 
 const moduleCards: PointCard[] = [
@@ -153,27 +117,6 @@ const deliverables: PointCard[] = [
   {
     title: 'Base para SaaS o reventa',
     copy: 'Sirve tanto para venta directa como para personalizacion a terceros.',
-  },
-]
-
-const testimonials: Testimonial[] = [
-  {
-    quote:
-      'Lo que mas ayuda a cerrar no es solo el codigo, sino que el cliente ya entiende el producto apenas abre la demo.',
-    name: 'Marina R.',
-    role: 'Implementadora freelance',
-  },
-  {
-    quote:
-      'La presentacion hace que se sienta mucho mas vendible que un admin generico o una plantilla vieja.',
-    name: 'Carlos F.',
-    role: 'Revendedor de software',
-  },
-  {
-    quote:
-      'Para consultorio chico o adaptacion vertical, la base ya da una sensacion profesional sin prometer de mas.',
-    name: 'Lucia N.',
-    role: 'Consultora operativa',
   },
 ]
 
@@ -300,8 +243,8 @@ function App() {
 
             <nav className="mini-nav" aria-label="Secciones del landing">
               <a href="#modulos">Modulos</a>
-              <a href="#prueba-social">Prueba social</a>
               <a href="#entrega">Entrega</a>
+              <a href="#demo">Demo</a>
             </nav>
 
             <button type="button" className="ghost-button small-button" onClick={() => setIsInside(true)}>
@@ -312,11 +255,11 @@ function App() {
           <section className="hero-grid">
             <div className="hero-copy">
               <span className="eyebrow">Sistema clinico listo para publicar</span>
-              <h1>Una demo que se ve como producto real y se vende mejor</h1>
+              <h1>Sistema clinico moderno, listo para mostrar y vender</h1>
               <p className="hero-lead">
                 MedAxis es una base comercial para consultorio, clinica chica o
-                revendedor. Stack moderno, narrativa clara y demo online lista
-                para compartir en grupos, inbox o WhatsApp.
+                revendedor. Tiene stack actual, demo online y modulos visibles
+                para venderlo rapido sin instalar nada.
               </p>
 
               <div className="hero-actions">
@@ -343,8 +286,8 @@ function App() {
               </div>
               <h2>Acceso comercial inmediato</h2>
               <p>
-                La venta entra mejor cuando la presentacion es simple: que es,
-                para quien sirve, que entrega y como se ve por dentro.
+                Demo online lista para abrir, mostrar el flujo y pasar el codigo
+                fuente a quien quiera adaptarlo o revenderlo.
               </p>
 
               <label>
@@ -381,52 +324,14 @@ function App() {
             </aside>
           </section>
 
-          <section className="section-band section-split">
-            <div className="section-copy">
-              <span className="eyebrow">Problema</span>
-              <h2>Si el producto se ve tecnico o viejo, baja la conversion</h2>
-              <p>
-                En Facebook no gana el que tiene mas arquitectura. Gana el que
-                logra que el comprador entienda rapido el valor y sienta que el
-                software ya esta mas cerca de negocio que de experimento.
-              </p>
-            </div>
-
-            <div className="card-grid three-grid">
-              {problemCards.map((card) => (
-                <article key={card.title} className="info-card">
-                  <strong>{card.title}</strong>
-                  <p>{card.copy}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section className="section-band">
-            <div className="section-copy">
-              <span className="eyebrow">Solucion</span>
-              <h2>Presentacion de autoridad, look actual y posicionamiento correcto</h2>
-              <p>
-                Esta version se apoya en el patron recomendado por la skill:
-                hero, confianza, prueba social, solucion visible y CTA antes de
-                pedir demasiado esfuerzo al comprador.
-              </p>
-            </div>
-
-            <div className="card-grid three-grid">
-              {solutionCards.map((card) => (
-                <article key={card.title} className="info-card soft-card">
-                  <strong>{card.title}</strong>
-                  <p>{card.copy}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
           <section id="modulos" className="section-band showcase-band">
             <div className="section-copy">
               <span className="eyebrow">Modulos visibles</span>
-              <h2>Una demo que enseña lo justo para vender, sin prometer de mas</h2>
+              <h2>Todo lo necesario para que el producto se entienda rapido</h2>
+              <p>
+                El comprador ve modulos concretos, entiende el alcance y puede
+                imaginar su adaptacion sin que haya que explicarle demasiado.
+              </p>
             </div>
 
             <div className="card-grid four-grid">
@@ -434,23 +339,6 @@ function App() {
                 <article key={card.title} className="info-card">
                   <strong>{card.title}</strong>
                   <p>{card.copy}</p>
-                </article>
-              ))}
-            </div>
-          </section>
-
-          <section id="prueba-social" className="section-band testimonial-band">
-            <div className="section-copy narrow-copy">
-              <span className="eyebrow">Prueba social</span>
-              <h2>Comentarios que reflejan como conviene venderlo</h2>
-            </div>
-
-            <div className="card-grid three-grid">
-              {testimonials.map((item) => (
-                <article key={item.name} className="testimonial-card">
-                  <p>"{item.quote}"</p>
-                  <strong>{item.name}</strong>
-                  <span>{item.role}</span>
                 </article>
               ))}
             </div>
@@ -477,13 +365,13 @@ function App() {
             </div>
           </section>
 
-          <section className="bottom-cta">
+          <section id="demo" className="bottom-cta">
             <div>
-              <span className="eyebrow">CTA final</span>
-              <h2>Mostralo primero. Cerralo despues.</h2>
+              <span className="eyebrow">Demo</span>
+              <h2>Abri la demo y miralo funcionando</h2>
               <p>
-                Si la persona quiere comprar, la demo ya esta lista para abrirse
-                en vivo y mostrar el producto desde una URL.
+                Ya esta lista para compartir por link, entrar con usuario demo y
+                mostrar el sistema sin friccion.
               </p>
             </div>
 
