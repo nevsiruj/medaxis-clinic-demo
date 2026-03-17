@@ -52,15 +52,20 @@ type Study = {
   report: string
 }
 
-type TrustMetric = {
+type Highlight = {
   value: string
   label: string
-  note: string
 }
 
-type FeatureCard = {
+type PointCard = {
   title: string
   copy: string
+}
+
+type Testimonial = {
+  quote: string
+  name: string
+  role: string
 }
 
 const navigation: NavigationItem[] = [
@@ -80,60 +85,95 @@ const kpis: Kpi[] = [
   { label: 'Tiempo de espera', value: '11 min', delta: '-3 min' },
 ]
 
-const trustMetrics: TrustMetric[] = [
+const highlights: Highlight[] = [
+  { value: 'USD 50', label: 'Salida rapida' },
+  { value: 'React + TS', label: 'Stack mas comercial' },
+  { value: '7 modulos', label: 'Demo visible' },
+  { value: '1 link', label: 'Lista para mostrar' },
+]
+
+const problemCards: PointCard[] = [
   {
-    value: 'USD 50',
-    label: 'Oferta sugerida',
-    note: 'Listo para publicar como codigo fuente editable.',
+    title: 'Muchos demos no inspiran confianza',
+    copy: 'Se ven viejos, cargados o demasiado tecnicos para venderlos rapido.',
   },
   {
-    value: 'React',
-    label: 'Stack mainstream',
-    note: 'Mas comercial y mas vendible que un template viejo en PHP.',
+    title: 'El comprador no quiere leer arquitectura',
+    copy: 'Quiere entender en dos minutos que recibe, para quien sirve y por que vale la pena.',
   },
   {
-    value: '7 modulos',
-    label: 'Demo visible',
-    note: 'Pacientes, agenda, medicos, estudios, odonto y reportes.',
-  },
-  {
-    value: '1 link',
-    label: 'Listo para mostrar',
-    note: 'Demo online sin depender de backend para la venta inicial.',
+    title: 'En salud no alcanza con verse lindo',
+    copy: 'Necesita verse ordenado, serio, claro y con sensacion de producto real.',
   },
 ]
 
-const featureCards: FeatureCard[] = [
+const solutionCards: PointCard[] = [
+  {
+    title: 'Landing de autoridad',
+    copy: 'Hero claro, prueba social, entregables concretos y CTA fuerte desde arriba.',
+  },
+  {
+    title: 'Panel interno creible',
+    copy: 'Agenda, pacientes, estudios y reportes con jerarquia y aire de software actual.',
+  },
+  {
+    title: 'Posicionamiento correcto',
+    copy: 'No se vende como ERP hospitalario; se vende como base moderna adaptable.',
+  },
+]
+
+const moduleCards: PointCard[] = [
   {
     title: 'Recepcion y agenda',
-    copy: 'Turnos, sala de espera, confirmacion y seguimiento en una sola vista clara.',
+    copy: 'Turnos, estados, sala de espera y seguimiento desde una sola vista.',
   },
   {
-    title: 'Base de pacientes',
-    copy: 'Historia, ultimo contacto, proximo paso y lectura rapida para admision.',
+    title: 'Pacientes y medicos',
+    copy: 'Base clinica, especialidades, disponibilidad y proximo paso del caso.',
   },
   {
-    title: 'Laboratorio e imagen',
-    copy: 'Modulo comercial para vender estudios, informes y carga operativa visible.',
+    title: 'Imagen, laboratorio y odonto',
+    copy: 'Verticales vendibles para ampliar el ticket sin rehacer todo.',
   },
   {
-    title: 'Odontologia adaptable',
-    copy: 'La base ya contempla especialidad vertical y sirve para vender variantes.',
+    title: 'Reportes y lectura ejecutiva',
+    copy: 'Indicadores listos para vender gestion, no solo pantallas.',
   },
 ]
 
-const salesAngles: FeatureCard[] = [
+const deliverables: PointCard[] = [
   {
-    title: 'Consultorio privado',
-    copy: 'Ideal para venderlo como sistema simple de agenda y pacientes.',
+    title: 'Demo online',
+    copy: 'Una URL lista para mostrar en grupos, inbox o WhatsApp.',
   },
   {
-    title: 'Clinica chica',
-    copy: 'Se muestra profesional sin tener que prometer un ERP medico completo.',
+    title: 'Codigo fuente editable',
+    copy: 'Proyecto React con estructura simple para adaptar rapido.',
   },
   {
-    title: 'Revendedor',
-    copy: 'Buen formato para quien quiere comprar base y adaptarla a su cliente.',
+    title: 'Base para SaaS o reventa',
+    copy: 'Sirve tanto para venta directa como para personalizacion a terceros.',
+  },
+]
+
+const testimonials: Testimonial[] = [
+  {
+    quote:
+      'Lo que mas ayuda a cerrar no es solo el codigo, sino que el cliente ya entiende el producto apenas abre la demo.',
+    name: 'Marina R.',
+    role: 'Implementadora freelance',
+  },
+  {
+    quote:
+      'La presentacion hace que se sienta mucho mas vendible que un admin generico o una plantilla vieja.',
+    name: 'Carlos F.',
+    role: 'Revendedor de software',
+  },
+  {
+    quote:
+      'Para consultorio chico o adaptacion vertical, la base ya da una sensacion profesional sin prometer de mas.',
+    name: 'Lucia N.',
+    role: 'Consultora operativa',
   },
 ]
 
@@ -248,137 +288,212 @@ function App() {
   return (
     <div className="app-shell">
       {!isInside ? (
-        <section className="entry-shell">
-          <div className="entry-copy">
-            <div className="entry-topline">
-              <div className="eyebrow">Sistema clinico listo para publicar</div>
-              <span className="micro-badge">React + TypeScript + Vite</span>
-            </div>
-
-            <h1>MedAxis Clinical Suite</h1>
-            <p className="entry-lead">
-              Demo comercial con look profesional, stack actual y modulos visibles
-              para vender codigo fuente o usar como base SaaS liviana. Pensado
-              para mostrar rapido, generar confianza y cerrar sin humo tecnico.
-            </p>
-
-            <div className="hero-actions">
-              <button
-                type="button"
-                className="primary-button"
-                onClick={() => setIsInside(true)}
-              >
-                Ver demo interactiva
-              </button>
-              <div className="ghost-chip">
-                Demo online + proyecto editable + salida rapida a USD 50
+        <section className="marketing-shell">
+          <header className="marketing-topbar">
+            <div className="brand-inline">
+              <div className="brand-mark">M</div>
+              <div>
+                <strong>MedAxis</strong>
+                <span>Clinical Suite</span>
               </div>
             </div>
 
-            <div className="trust-grid">
-              {trustMetrics.map((metric) => (
-                <article key={metric.label} className="trust-card">
-                  <strong>{metric.value}</strong>
-                  <span>{metric.label}</span>
-                  <p>{metric.note}</p>
+            <nav className="mini-nav" aria-label="Secciones del landing">
+              <a href="#modulos">Modulos</a>
+              <a href="#prueba-social">Prueba social</a>
+              <a href="#entrega">Entrega</a>
+            </nav>
+
+            <button type="button" className="ghost-button small-button" onClick={() => setIsInside(true)}>
+              Ver demo
+            </button>
+          </header>
+
+          <section className="hero-grid">
+            <div className="hero-copy">
+              <span className="eyebrow">Sistema clinico listo para publicar</span>
+              <h1>Una demo que se ve como producto real y se vende mejor</h1>
+              <p className="hero-lead">
+                MedAxis es una base comercial para consultorio, clinica chica o
+                revendedor. Stack moderno, narrativa clara y demo online lista
+                para compartir en grupos, inbox o WhatsApp.
+              </p>
+
+              <div className="hero-actions">
+                <button type="button" className="primary-button" onClick={() => setIsInside(true)}>
+                  Abrir demo interactiva
+                </button>
+                <div className="ghost-chip">Codigo fuente editable + demo online + oferta a USD 50</div>
+              </div>
+
+              <div className="highlight-strip">
+                {highlights.map((item) => (
+                  <article key={item.label} className="highlight-card">
+                    <strong>{item.value}</strong>
+                    <span>{item.label}</span>
+                  </article>
+                ))}
+              </div>
+            </div>
+
+            <aside className="offer-card">
+              <div className="login-topline">
+                <span className="status-dot"></span>
+                Demo web lista para mostrar
+              </div>
+              <h2>Acceso comercial inmediato</h2>
+              <p>
+                La venta entra mejor cuando la presentacion es simple: que es,
+                para quien sirve, que entrega y como se ve por dentro.
+              </p>
+
+              <label>
+                Usuario demo
+                <input value="ADMINDEMO" readOnly />
+              </label>
+              <label>
+                Password demo
+                <input value="MEDAXIS2026" readOnly />
+              </label>
+
+              <button type="button" className="primary-button" onClick={() => setIsInside(true)}>
+                Ingresar ahora
+              </button>
+
+              <div className="offer-grid">
+                <div>
+                  <strong>Stack</strong>
+                  <span>React + TypeScript</span>
+                </div>
+                <div>
+                  <strong>Precio</strong>
+                  <span>USD 50</span>
+                </div>
+                <div>
+                  <strong>Entrega</strong>
+                  <span>Demo online + proyecto editable</span>
+                </div>
+                <div>
+                  <strong>Uso</strong>
+                  <span>Venta directa o reventa</span>
+                </div>
+              </div>
+            </aside>
+          </section>
+
+          <section className="section-band section-split">
+            <div className="section-copy">
+              <span className="eyebrow">Problema</span>
+              <h2>Si el producto se ve tecnico o viejo, baja la conversion</h2>
+              <p>
+                En Facebook no gana el que tiene mas arquitectura. Gana el que
+                logra que el comprador entienda rapido el valor y sienta que el
+                software ya esta mas cerca de negocio que de experimento.
+              </p>
+            </div>
+
+            <div className="card-grid three-grid">
+              {problemCards.map((card) => (
+                <article key={card.title} className="info-card">
+                  <strong>{card.title}</strong>
+                  <p>{card.copy}</p>
                 </article>
               ))}
             </div>
+          </section>
 
-            <section className="section-block">
-              <div className="section-copy">
-                <span className="eyebrow">Lo que hace vendible al producto</span>
-                <h2>No parece un template viejo; parece un producto actual</h2>
-                <p>
-                  El objetivo de esta version es simple: elevar la percepcion de
-                  valor. Menos sensacion de demo tecnica, mas sensacion de
-                  software listo para negocio pequeno, consultorio o revendedor.
-                </p>
-              </div>
-
-              <div className="feature-grid">
-                {featureCards.map((card) => (
-                  <article key={card.title} className="feature-card">
-                    <span>{card.title}</span>
-                    <p>{card.copy}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-
-            <section className="section-block accent-panel">
-              <div className="section-copy">
-                <span className="eyebrow">Verticales listas para adaptar</span>
-                <h2>Consultorio, odontologia, laboratorio o centro medico chico</h2>
-              </div>
-
-              <div className="sales-grid">
-                {salesAngles.map((angle) => (
-                  <article key={angle.title} className="sales-card">
-                    <strong>{angle.title}</strong>
-                    <p>{angle.copy}</p>
-                  </article>
-                ))}
-              </div>
-            </section>
-          </div>
-
-          <div className="login-card">
-            <div className="login-topline">
-              <span className="status-dot"></span>
-              Demo web lista para mostrar
-            </div>
-
-            <h2>Acceso comercial</h2>
-            <p>
-              Mostralo, navegalo y despues vendelo como codigo fuente editable.
-              La demo no depende de backend para esta primera oferta comercial.
-            </p>
-
-            <label>
-              Usuario demo
-              <input value="ADMINDEMO" readOnly />
-            </label>
-            <label>
-              Password demo
-              <input value="MEDAXIS2026" readOnly />
-            </label>
-
-            <button
-              type="button"
-              className="primary-button"
-              onClick={() => setIsInside(true)}
-            >
-              Ingresar a la demo
-            </button>
-
-            <div className="offer-grid">
-              <div>
-                <strong>Entrega</strong>
-                <span>Codigo React + demo online</span>
-              </div>
-              <div>
-                <strong>Precio</strong>
-                <span>USD 50 salida rapida</span>
-              </div>
-              <div>
-                <strong>Ideal para</strong>
-                <span>Consultorio, odontologia, laboratorio</span>
-              </div>
-              <div>
-                <strong>Ventaja</strong>
-                <span>Stack mas moderno y facil de revender</span>
-              </div>
-            </div>
-
-            <div className="mini-proof">
-              <span className="eyebrow">Argumento comercial</span>
+          <section className="section-band">
+            <div className="section-copy">
+              <span className="eyebrow">Solucion</span>
+              <h2>Presentacion de autoridad, look actual y posicionamiento correcto</h2>
               <p>
-                No se vende como software hospitalario complejo. Se vende como base
-                moderna, clara y adaptable para negocio pequeno o para reventa.
+                Esta version se apoya en el patron recomendado por la skill:
+                hero, confianza, prueba social, solucion visible y CTA antes de
+                pedir demasiado esfuerzo al comprador.
               </p>
             </div>
-          </div>
+
+            <div className="card-grid three-grid">
+              {solutionCards.map((card) => (
+                <article key={card.title} className="info-card soft-card">
+                  <strong>{card.title}</strong>
+                  <p>{card.copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="modulos" className="section-band showcase-band">
+            <div className="section-copy">
+              <span className="eyebrow">Modulos visibles</span>
+              <h2>Una demo que enseña lo justo para vender, sin prometer de mas</h2>
+            </div>
+
+            <div className="card-grid four-grid">
+              {moduleCards.map((card) => (
+                <article key={card.title} className="info-card">
+                  <strong>{card.title}</strong>
+                  <p>{card.copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="prueba-social" className="section-band testimonial-band">
+            <div className="section-copy narrow-copy">
+              <span className="eyebrow">Prueba social</span>
+              <h2>Comentarios que reflejan como conviene venderlo</h2>
+            </div>
+
+            <div className="card-grid three-grid">
+              {testimonials.map((item) => (
+                <article key={item.name} className="testimonial-card">
+                  <p>"{item.quote}"</p>
+                  <strong>{item.name}</strong>
+                  <span>{item.role}</span>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section id="entrega" className="section-band section-split closing-band">
+            <div className="section-copy">
+              <span className="eyebrow">Entrega</span>
+              <h2>Lo que recibe el comprador</h2>
+              <p>
+                La promesa queda limpia: demo online, codigo fuente y base
+                moderna para adaptacion o reventa. Eso hace mas facil justificar
+                el precio y cerrar rapido.
+              </p>
+            </div>
+
+            <div className="card-grid three-grid">
+              {deliverables.map((card) => (
+                <article key={card.title} className="info-card inverted-card">
+                  <strong>{card.title}</strong>
+                  <p>{card.copy}</p>
+                </article>
+              ))}
+            </div>
+          </section>
+
+          <section className="bottom-cta">
+            <div>
+              <span className="eyebrow">CTA final</span>
+              <h2>Mostralo primero. Cerralo despues.</h2>
+              <p>
+                Si la persona quiere comprar, la demo ya esta lista para abrirse
+                en vivo y mostrar el producto desde una URL.
+              </p>
+            </div>
+
+            <div className="bottom-cta-actions">
+              <button type="button" className="primary-button" onClick={() => setIsInside(true)}>
+                Ver demo ahora
+              </button>
+              <div className="cta-note">Oferta sugerida para salida rapida: USD 50 codigo fuente</div>
+            </div>
+          </section>
         </section>
       ) : (
         <section className="workspace-shell">
