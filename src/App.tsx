@@ -52,6 +52,17 @@ type Study = {
   report: string
 }
 
+type TrustMetric = {
+  value: string
+  label: string
+  note: string
+}
+
+type FeatureCard = {
+  title: string
+  copy: string
+}
+
 const navigation: NavigationItem[] = [
   { key: 'dashboard', label: 'Panel', eyebrow: 'Resumen' },
   { key: 'patients', label: 'Pacientes', eyebrow: 'Base clinica' },
@@ -67,6 +78,63 @@ const kpis: Kpi[] = [
   { label: 'Pacientes activos', value: '1,284', delta: '+122 este mes' },
   { label: 'Cobertura de agenda', value: '87%', delta: '4 huecos libres' },
   { label: 'Tiempo de espera', value: '11 min', delta: '-3 min' },
+]
+
+const trustMetrics: TrustMetric[] = [
+  {
+    value: 'USD 50',
+    label: 'Oferta sugerida',
+    note: 'Listo para publicar como codigo fuente editable.',
+  },
+  {
+    value: 'React',
+    label: 'Stack mainstream',
+    note: 'Mas comercial y mas vendible que un template viejo en PHP.',
+  },
+  {
+    value: '7 modulos',
+    label: 'Demo visible',
+    note: 'Pacientes, agenda, medicos, estudios, odonto y reportes.',
+  },
+  {
+    value: '1 link',
+    label: 'Listo para mostrar',
+    note: 'Demo online sin depender de backend para la venta inicial.',
+  },
+]
+
+const featureCards: FeatureCard[] = [
+  {
+    title: 'Recepcion y agenda',
+    copy: 'Turnos, sala de espera, confirmacion y seguimiento en una sola vista clara.',
+  },
+  {
+    title: 'Base de pacientes',
+    copy: 'Historia, ultimo contacto, proximo paso y lectura rapida para admision.',
+  },
+  {
+    title: 'Laboratorio e imagen',
+    copy: 'Modulo comercial para vender estudios, informes y carga operativa visible.',
+  },
+  {
+    title: 'Odontologia adaptable',
+    copy: 'La base ya contempla especialidad vertical y sirve para vender variantes.',
+  },
+]
+
+const salesAngles: FeatureCard[] = [
+  {
+    title: 'Consultorio privado',
+    copy: 'Ideal para venderlo como sistema simple de agenda y pacientes.',
+  },
+  {
+    title: 'Clinica chica',
+    copy: 'Se muestra profesional sin tener que prometer un ERP medico completo.',
+  },
+  {
+    title: 'Revendedor',
+    copy: 'Buen formato para quien quiere comprar base y adaptarla a su cliente.',
+  },
 ]
 
 const appointments: Appointment[] = [
@@ -173,21 +241,6 @@ const reportRows = [
   { label: 'Especialidad mas pedida', value: 'Clinica general' },
 ]
 
-const boardCards = [
-  {
-    title: 'Recepcion',
-    copy: 'Busqueda rapida de paciente, agenda del dia, admision y control de espera.',
-  },
-  {
-    title: 'Consultorio',
-    copy: 'Historia clinica, diagnosticos, ordenes medicas y evolucion del caso.',
-  },
-  {
-    title: 'Estudios',
-    copy: 'Ecografias, laboratorio, radiologia y entrega de informes.',
-  },
-]
-
 function App() {
   const [isInside, setIsInside] = useState(false)
   const [activeView, setActiveView] = useState<ViewKey>('dashboard')
@@ -197,41 +250,89 @@ function App() {
       {!isInside ? (
         <section className="entry-shell">
           <div className="entry-copy">
-            <div className="eyebrow">Sistema clinico listo para demo</div>
-            <h1>MedAxis</h1>
-            <p className="entry-lead">
-              Demo comercial de gestion clinica construido con React, TypeScript y
-              Vite. Pensado para vender codigo fuente o usar como base SaaS.
-            </p>
-
-            <div className="entry-badges">
-              <span>Pacientes</span>
-              <span>Agenda medica</span>
-              <span>Laboratorio</span>
-              <span>Odontologia</span>
-              <span>Reportes</span>
-              <span>Oferta desde USD 50</span>
+            <div className="entry-topline">
+              <div className="eyebrow">Sistema clinico listo para publicar</div>
+              <span className="micro-badge">React + TypeScript + Vite</span>
             </div>
 
-            <div className="entry-grid">
-              {boardCards.map((card) => (
-                <article key={card.title} className="entry-card">
-                  <span>{card.title}</span>
-                  <p>{card.copy}</p>
+            <h1>MedAxis Clinical Suite</h1>
+            <p className="entry-lead">
+              Demo comercial con look profesional, stack actual y modulos visibles
+              para vender codigo fuente o usar como base SaaS liviana. Pensado
+              para mostrar rapido, generar confianza y cerrar sin humo tecnico.
+            </p>
+
+            <div className="hero-actions">
+              <button
+                type="button"
+                className="primary-button"
+                onClick={() => setIsInside(true)}
+              >
+                Ver demo interactiva
+              </button>
+              <div className="ghost-chip">
+                Demo online + proyecto editable + salida rapida a USD 50
+              </div>
+            </div>
+
+            <div className="trust-grid">
+              {trustMetrics.map((metric) => (
+                <article key={metric.label} className="trust-card">
+                  <strong>{metric.value}</strong>
+                  <span>{metric.label}</span>
+                  <p>{metric.note}</p>
                 </article>
               ))}
             </div>
+
+            <section className="section-block">
+              <div className="section-copy">
+                <span className="eyebrow">Lo que hace vendible al producto</span>
+                <h2>No parece un template viejo; parece un producto actual</h2>
+                <p>
+                  El objetivo de esta version es simple: elevar la percepcion de
+                  valor. Menos sensacion de demo tecnica, mas sensacion de
+                  software listo para negocio pequeno, consultorio o revendedor.
+                </p>
+              </div>
+
+              <div className="feature-grid">
+                {featureCards.map((card) => (
+                  <article key={card.title} className="feature-card">
+                    <span>{card.title}</span>
+                    <p>{card.copy}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
+
+            <section className="section-block accent-panel">
+              <div className="section-copy">
+                <span className="eyebrow">Verticales listas para adaptar</span>
+                <h2>Consultorio, odontologia, laboratorio o centro medico chico</h2>
+              </div>
+
+              <div className="sales-grid">
+                {salesAngles.map((angle) => (
+                  <article key={angle.title} className="sales-card">
+                    <strong>{angle.title}</strong>
+                    <p>{angle.copy}</p>
+                  </article>
+                ))}
+              </div>
+            </section>
           </div>
 
           <div className="login-card">
             <div className="login-topline">
               <span className="status-dot"></span>
-              Demo online disponible
+              Demo web lista para mostrar
             </div>
-            <h2>Ingresar al panel</h2>
+
+            <h2>Acceso comercial</h2>
             <p>
-              Vista demo para publicar y vender el producto. No requiere backend
-              para esta version comercial.
+              Mostralo, navegalo y despues vendelo como codigo fuente editable.
+              La demo no depende de backend para esta primera oferta comercial.
             </p>
 
             <label>
@@ -243,27 +344,39 @@ function App() {
               <input value="MEDAXIS2026" readOnly />
             </label>
 
-            <button type="button" className="primary-button" onClick={() => setIsInside(true)}>
-              Ver demo interactiva
+            <button
+              type="button"
+              className="primary-button"
+              onClick={() => setIsInside(true)}
+            >
+              Ingresar a la demo
             </button>
 
-            <div className="login-footer">
+            <div className="offer-grid">
               <div>
-                <strong>Stack</strong>
-                <span>React + TypeScript + Vite</span>
-              </div>
-              <div>
-                <strong>Formato</strong>
-                <span>Codigo listo para adaptar</span>
+                <strong>Entrega</strong>
+                <span>Codigo React + demo online</span>
               </div>
               <div>
                 <strong>Precio</strong>
-                <span>USD 50 codigo fuente</span>
+                <span>USD 50 salida rapida</span>
               </div>
               <div>
-                <strong>Entrega</strong>
-                <span>Demo online + proyecto editable</span>
+                <strong>Ideal para</strong>
+                <span>Consultorio, odontologia, laboratorio</span>
               </div>
+              <div>
+                <strong>Ventaja</strong>
+                <span>Stack mas moderno y facil de revender</span>
+              </div>
+            </div>
+
+            <div className="mini-proof">
+              <span className="eyebrow">Argumento comercial</span>
+              <p>
+                No se vende como software hospitalario complejo. Se vende como base
+                moderna, clara y adaptable para negocio pequeno o para reventa.
+              </p>
             </div>
           </div>
         </section>
@@ -274,7 +387,7 @@ function App() {
               <div className="brand-icon">M</div>
               <div>
                 <strong>MedAxis</strong>
-                <span>Clinic workspace</span>
+                <span>Clinical workspace</span>
               </div>
             </div>
 
@@ -294,20 +407,49 @@ function App() {
 
             <div className="sidebar-note">
               <span>Modo demo</span>
-              <p>Ideal para mostrar modulo, flujo y look & feel sin exponer datos reales.</p>
+              <p>
+                Vista segura para vender el producto, mostrar modulos y volver al
+                landing cuando quieras.
+              </p>
             </div>
           </aside>
 
           <main className="workspace-main">
+            <section className="workspace-hero">
+              <div>
+                <span className="eyebrow">Panel operacional</span>
+                <h2>Vista interna lista para convencer rapido</h2>
+                <p>
+                  Esta demo enseña agenda, pacientes, medicos, estudios y
+                  reportes con una interfaz mas actual, clara y comercial.
+                </p>
+              </div>
+
+              <div className="workspace-hero-meta">
+                <div>
+                  <strong>Precio sugerido</strong>
+                  <span>USD 50</span>
+                </div>
+                <div>
+                  <strong>Formato</strong>
+                  <span>Codigo editable</span>
+                </div>
+                <div>
+                  <strong>Uso</strong>
+                  <span>Demo o base SaaS</span>
+                </div>
+              </div>
+            </section>
+
             <header className="topbar">
               <div>
                 <div className="eyebrow">Panel comercial</div>
-                <h2>Operacion de clinica en una sola vista</h2>
+                <h2>Operacion clinica en una sola vista</h2>
               </div>
 
               <div className="topbar-actions">
                 <button type="button" className="ghost-button" onClick={() => setIsInside(false)}>
-                  Volver al login
+                  Volver al landing
                 </button>
                 <button type="button" className="primary-button">
                   Exportar demo
@@ -357,16 +499,16 @@ function App() {
                   <article className="panel-card">
                     <div className="panel-header">
                       <div>
-                        <span className="eyebrow">Implementacion</span>
-                        <h3>Lo que vendes</h3>
+                        <span className="eyebrow">Entrega</span>
+                        <h3>Lo que recibe el comprador</h3>
                       </div>
                     </div>
 
                     <ul className="check-list">
-                      <li>Acceso administrativo y medico</li>
+                      <li>Landing comercial y panel interno en una sola demo</li>
                       <li>Agenda con estados y control de atencion</li>
                       <li>Base de pacientes y modulo de especialidades</li>
-                      <li>Reportes ejecutivos con exportacion</li>
+                      <li>Reportes ejecutivos con look mas premium</li>
                     </ul>
                   </article>
                 </section>
@@ -537,14 +679,14 @@ function App() {
                 <article className="panel-card">
                   <div className="panel-header">
                     <div>
-                      <span className="eyebrow">Entrega</span>
-                      <h3>Formato de venta</h3>
+                      <span className="eyebrow">Formato de venta</span>
+                      <h3>Lo que conviene prometer</h3>
                     </div>
                   </div>
                   <ul className="check-list">
                     <li>Codigo fuente listo para entregar</li>
                     <li>Interfaz moderna y facil de adaptar</li>
-                    <li>Deploy estatico para demo comercial</li>
+                    <li>Demo online para mostrar sin instalar nada</li>
                     <li>Base clara para evolucion futura</li>
                     <li>Oferta sugerida para salida rapida: USD 50</li>
                   </ul>
